@@ -1,37 +1,40 @@
 import React, { useState } from "react";
 
 const NoteFeature = () => {
-const [notes, setNotes] = useState([]);
-const [createNote, setCreateNote] = useState("");
+  const [notes, setNotes] = useState([]);
+  const [createNote, setCreateNote] = useState("");
 
-const handleAddNote = () => {
+  const handleAddNote = () => {
     if (createNote.trim() !== "") {
-        setNotes([...notes, { text: createNote.trim(), checked: false }]);
-        setCreateNote("");
-      }
-    };
+      setNotes([...notes, { text: createNote.trim(), checked: false }]);
+      setCreateNote("");
+    }
+  };
 
-const handleDeleteNote = (index) => {
+  const handleDeleteNote = (index) => {
     const newNotes = [...notes];
     newNotes.splice(index, 1);
     setNotes(newNotes);
-}
+  };
 
-const handleCheckNote = (index) => {
+  const handleCheckNote = (index) => {
     const newNotes = [...notes];
     newNotes[index].checked = !newNotes[index].checked;
-    setNotes(newNotes);
-}
+    setNotes(newNotes);s
+  };
 
-return (
+
+
+  return (
     <div>
-        <h1>NOTE</h1>
-        <input
+      <h1>NOTE</h1>
+      <input
         type="text"
         value={createNote}
-        onChange={(e) => setCreateNote(e.target.value)}/>
-        <button onClick={handleAddNote}>Add Note</button>
-        <ul>
+        onChange={(e) => setCreateNote(e.target.value)}
+      />
+      <button onClick={handleAddNote}>Add Note</button>
+      <ul>
         {notes.map((item, index) => (
           <li
             key={index}
@@ -64,12 +67,7 @@ return (
         ))}
       </ul>
     </div>
-)
+  );
+};
 
-
-}
-
-export default NoteFeature
-
-
-
+export default NoteFeature;
