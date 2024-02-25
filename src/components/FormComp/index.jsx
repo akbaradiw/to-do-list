@@ -9,19 +9,22 @@ const FormComp = ({
   editTodo,
   setEditTodo,
 }) => {
-
-
   const onInputChange = (e) => {
     setInput(e.target.value);
   };
   const onFormSubmit = (e) => {
     e.preventDefault();
-    if (!editTodo) {
-      setTodo([...todo, { id: uuidv4(), title: input, completed: false }]);
-      setInput("");
-    } else {
-      updateTodo(input, editTodo.id, editTodo.completed);
-    }
+    setTodo([...todo, { id: uuidv4(), title: input, completed: false }]);
+    setInput("");
+  };
+
+  const handleCheck = (id) => {
+    setTodo(
+      todo.map((todo) =>
+        todo.id === id ? { ...todo, checked: !todo.checked } : todo
+      )
+    );
+    console.log(todo);
   };
 
   return (
@@ -34,6 +37,15 @@ const FormComp = ({
           required
           onChange={onInputChange}
         />
+        <input
+            type="checkbox"
+            checked={todo.checked}
+            // onChange={() => handleCheck(item.id)}
+          ></input>
+        {/* <span
+          style={{ textDecoration: todo.text ? "line-through" : "none" }}
+        ></span> */}
+
         <button type="submit">Add</button>
       </form>
     </div>

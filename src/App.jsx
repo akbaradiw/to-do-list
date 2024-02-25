@@ -1,9 +1,10 @@
 import { useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
-import "./App.css";
+// import "./App.css";
 import FormComp from "./components/FormComp";
 import ListComp from "./components/ListComp";
+import NoteFeature from "./NoteFeature";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       todo={todo} 
       setTodo={setTodo}
     />
+    <NoteFeature/>
     </div>
   );
 }
