@@ -26,44 +26,42 @@ const NoteFeature = () => {
 
 
   return (
-    <div>
-      <h1>NOTE</h1>
-      <input
+    <div className="todo-body">
+      <div className="flex justify-center px-3 py-8 items-center ">
+      <input className="border-2 border-black"
         type="text"
         value={createNote}
         onChange={(e) => setCreateNote(e.target.value)}
       />
-      <button onClick={handleAddNote}>Add Note</button>
-      <ul>
+      <button className="ml-3 px-3 py-1  rounded bg-amber-700	text-white" onClick={handleAddNote}>Add</button>
+      </div>
+      <ul  >
         {notes.map((item, index) => (
-          <li
+          <li className="list"
             key={index}
-            style={{
-              display: "flex",
-            }}
           >
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <input
+            <div>
+              <input style={{ marginLeft: "8px" }}
                 type="checkbox"
                 checked={item.checked}
                 onChange={() => handleCheckNote(index)}
               />
               <span
                 style={{
-                  marginRight: "10px",
+                  marginLeft: "8px",
                   textDecoration: item.checked ? "line-through" : "none",
                 }}
               >
                 {item.text}
               </span>
             </div>
-            <button
-              style={{ marginTop: "5px", marginBottom: "5px" }}
+            <button style={{ marginRight: "9px" }}
               onClick={() => handleDeleteNote(index)}
             >
               Delete
             </button>
           </li>
+      
         ))}
       </ul>
     </div>
