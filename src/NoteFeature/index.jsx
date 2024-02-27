@@ -26,16 +26,16 @@ const NoteFeature = () => {
 
 
   return (
-    <div className="todo-body">
-      <div className="flex justify-center px-3 py-8 items-center ">
-      <input className="border-2 border-black"
+    <div>
+      <div className="flex justify-center pr-6 ml-6 pt-9 pb-6 mb-1 items-center">
+      <input className="border-2 border-black px-7 pr-11"
         type="text"
         value={createNote}
         onChange={(e) => setCreateNote(e.target.value)}
       />
-      <button className="ml-3 px-3 py-1  rounded bg-amber-700	text-white" onClick={handleAddNote}>Add</button>
+      <button className="ml-3 px-4 py-1   rounded bg-amber-700	text-white" onClick={handleAddNote}>Add</button>
       </div>
-      <ul  >
+      <ul className="grid justify-center ml-2" >
         {notes.map((item, index) => (
           <li className="list"
             key={index}
@@ -58,7 +58,7 @@ const NoteFeature = () => {
             <button style={{ marginRight: "9px" }}
               onClick={() => handleDeleteNote(index)}
             >
-              Delete
+              X
             </button>
           </li>
       
