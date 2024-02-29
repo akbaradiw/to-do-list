@@ -3,6 +3,7 @@ import React, { useState } from "react";
 const NoteFeature = () => {
   const [notes, setNotes] = useState([]);
   const [createNote, setCreateNote] = useState("");
+  const [updateNote, setUpdateNote] = useState({});
 
   const handleAddNote = () => {
     if (createNote.trim() !== "") {
@@ -25,15 +26,17 @@ const NoteFeature = () => {
 
 
 
+
+
   return (
     <div>
       <div className="flex justify-center pr-6 ml-6 pt-9 pb-6 mb-1 items-center">
-      <input className="border-2 border-black px-7 pr-11"
+      <input className=" px-7 pr-11"
         type="text"
         value={createNote}
         onChange={(e) => setCreateNote(e.target.value)}
       />
-      <button className="ml-3 px-4 py-1   rounded bg-amber-700	text-white" onClick={handleAddNote}>Add</button>
+      <button className="ml-3 px-4 py-1  rounded bg-cyan-600 ring-1 ring-stone-200	text-white cursor-pointer" onClick={handleAddNote}>Add</button>
       </div>
       <ul className="grid justify-center ml-2" >
         {notes.map((item, index) => (
@@ -41,7 +44,7 @@ const NoteFeature = () => {
             key={index}
           >
             <div>
-              <input style={{ marginLeft: "8px" }}
+              <input  style={{ marginLeft: "8px" }}
                 type="checkbox"
                 checked={item.checked}
                 onChange={() => handleCheckNote(index)}
@@ -55,11 +58,12 @@ const NoteFeature = () => {
                 {item.text}
               </span>
             </div>
-            <button style={{ marginRight: "9px" }}
+            <button  style={{ marginRight: "9px" }}
               onClick={() => handleDeleteNote(index)}
             >
               X
             </button>
+          
           </li>
       
         ))}
@@ -67,5 +71,6 @@ const NoteFeature = () => {
     </div>
   );
 };
+
 
 export default NoteFeature;
