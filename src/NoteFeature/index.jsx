@@ -21,7 +21,7 @@ const NoteFeature = () => {
   const handleCheckNote = (index) => {
     const newNotes = [...notes];
     newNotes[index].checked = !newNotes[index].checked;
-    setNotes(newNotes);s
+    setNotes(newNotes);
   };
 
 

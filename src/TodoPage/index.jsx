@@ -2,12 +2,11 @@ import React from "react";
 import TodoComp from "../TodoComp";
 import { uid } from "uid";
 import { useState } from "react";
+import { Modal } from "bootstrap";
 const TodoPage = () => {
-  const [todos, setTodos] = useState([]);
-
-  const [formData, setFormData] = useState({
-    name: "",
-    telp: "",
+const [todos, setTodos] = useState([]);
+const [formData, setFormData] = useState({
+    task: ""
   });
 
   const [editData, setEditData] = useState({
@@ -27,23 +26,23 @@ const TodoPage = () => {
     if (editData.status) {
       data.forEach((todos) => {
         if (todos.id === editData.id) {
-          todos.name = formData.name;
-          todos.telp = formData.telp;
+          todos.task = formData.task;
         }
       });
     } else {
-      data.push({ id: uid(), name: formData.name, telp: formData.telp });
+      data.push({ id: uid(), task: formData.task});
     }
     setEditData({ id: null, status: false });
     setTodos(data);
-    setFormData({ name: "", telp: "" });
+    setFormData({ task: "" });
   };
 
   const editButton = (id) => {
     let data = [...todos];
     let foundData = data.find((todos) => todos.id === id);
     setEditData({ id: id, status: true });
-    setFormData({ name: foundData.name, telp: foundData.telp });
+    setFormData({ task: foundData.task });
+    Modal.getOrCreateInstance(document.getElementById("editModal")).show();
   };
 
   const deleteButton = (id) => {
@@ -52,35 +51,24 @@ const TodoPage = () => {
     setTodos(filterdData);
   };
 
+
   return (
     <div>
-        <h1>ini coba lagi</h1>
-      <form onSubmit={addSubmit} className="px-3 py-4">
-        <div className="form-group">
-          <label htmlFor="">Name</label>
-          <input
+      <form onSubmit={addSubmit} className="flex justify-center pt-7 pl-14">
+        <div className="border-1 radius-4">
+          <input className="pl-2"
             type="text"
-            className="form-control"
+            // className="form-control"
             onChange={submitHandler}
-            value={formData.name}
-            name="name"
-          />
-        </div>
-        <div className="form-group mt-3">
-          <label htmlFor="">No. Telp</label>
-          <input
-            type="text"
-            className="form-control"
-            onChange={submitHandler}
-            value={formData.telp}
-            name="telp"
+            value={formData.task}
+            name="task"
           />
         </div>
         <div>
-          <button type="submit" className="btn btn-primary w-100 mt-3">
-            Save
+          <button type="submit" className="text-white bg-cyan-600 hover:bg-cyan-400 focus:ring-4 focus:ring-blue-300 font-medium rounded-xl text-sm ml-2 px-3 py-1">
+            Add Task
           </button>
-        </div>
+          </div>
       </form>
       <TodoComp
         editButton={editButton}
